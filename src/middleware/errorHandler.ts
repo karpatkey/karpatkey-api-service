@@ -1,4 +1,4 @@
-import {Request, Response, NextFunction} from 'express'
+import { Request, Response, NextFunction } from 'express'
 import config from '../config'
 
 /**
@@ -6,13 +6,11 @@ import config from '../config'
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
-    console.error('errorHandler', err)
-    const statusCode = res.statusCode === 200 ? 500 : res.statusCode
-    res.status(statusCode).json({
-        message: config.nodeEnv === 'production' ?
-            'unknown error' :
-            `${err}`
-    })
+  console.error('errorHandler', err)
+  const statusCode = res.statusCode === 200 ? 500 : res.statusCode
+  res.status(statusCode).json({
+    message: config.nodeEnv === 'production' ? 'unknown error' : `${err}`
+  })
 }
 
 export default errorHandler
