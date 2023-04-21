@@ -1,9 +1,10 @@
-# karpatkey-nc-aum-api
+# karpatkey API service made with Node, Express & Typescript
 
 [![Tests](https://github.com/KarpatkeyDAO/karpatkey-nc-aum-api/workflows/Tests/badge.svg)](https://github.com/KarpatkeyDAO/karpatkey-nc-aum-api/actions?query=workflow%3ATests)
 [![Lint](https://github.com/KarpatkeyDAO/karpatkey-nc-aum-api/workflows/Lint/badge.svg)](https://github.com/KarpatkeyDAO/karpatkey-nc-aum-api/actions?query=workflow%3ALint)
 
-# karpatkey non-custodial assets under management API service made with Node, Express & Typescript
+## About
+This is a simple API service that returns the non-custodial assets under management (AUM) of karpatkey.
 
 ## Project Links
 - 📰 [Kanban Board](https://github.com/orgs/KarpatkeyDAO/projects/2)
