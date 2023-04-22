@@ -27,6 +27,5 @@ You should copy `.env.sample` to `.env` and then:
 
 A `GET` request to `/aum` will respond with the value of non-custodial assets under management.
 
-## Help out
-
-Feedback and contributions are very welcome.
+## Contribution
+Any and every contribution is welcomed and appreciated.
