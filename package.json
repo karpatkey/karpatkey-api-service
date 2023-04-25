@@ -1,10 +1,15 @@
 {
   "name": "karpatkey-nc-aum-api",
   "version": "0.1.0",
-  "description": "API to obtain the amount of non-custodial assets under management",
+  "description": "API to obtain the amount of non-custodial assets under management and blog posts from mirror.xyz",
   "author": "Mariano Aguero <mariano@karpatkey.com>",
   "license": "MIT",
   "main": "dist/src/index.js",
+  "engines" : {
+    "npm" : ">=8.19.0",
+    "yarn" : ">=1.22.19",
+    "node" : ">=v18.13.0"
+  },
   "scripts": {
     "build": "tsc",
     "start": "node dist/src/index.js",

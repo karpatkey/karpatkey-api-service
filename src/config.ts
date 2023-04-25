@@ -20,6 +20,7 @@ const config = {
     production: process.env.PROD_ORIGIN ?? 'none'
   },
   defaultAumValue: process.env.DEFAULT_AUM_VALUE,
+  mirrorAddress: process.env.MIRROR_ADDRESS,
   googleProjectId: process.env.GOOGLE_PROJECT_ID,
   googleCredentials: {
     client_id: process.env.GOOGLE_CLIENT_ID,

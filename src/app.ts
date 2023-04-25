@@ -7,6 +7,7 @@ import errorHandler from './middleware/errorHandler'
 import notFoundHandler from './middleware/notFoundHandler'
 import aum from './routes/aum'
 import status from './routes/status'
+import posts from './routes/posts'
 
 const app = express()
 
@@ -25,6 +26,7 @@ app.use(morgan('tiny'))
 // Apply routes before error handling
 app.use('/', status)
 app.use('/aum', aum)
+app.use('/posts', posts)
 
 // Not found handler
 app.use('*', notFoundHandler)
