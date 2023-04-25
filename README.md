@@ -26,6 +26,7 @@ You should copy `.env.example` to `.env` and then:
 ## Default endpoints:
 
 A `GET` request to `/aum` will respond with the value of non-custodial assets under management.
+
 A `GET` request to `/posts` will respond with the latest posts from the mirror.xyz blog.
 
 ## Contribution
