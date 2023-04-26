@@ -12,7 +12,7 @@ const getAum: RequestHandler = async (req, res) => {
     const value = row.length ? row[0]['usd_final_underlying_and_UR_balance'] : config.defaultAumValue
 
     res.status(200).json({
-      value
+      value: value.toFixed(0)
     })
   } catch (error) {
     console.error('Error getting AUM', error)
