@@ -6,11 +6,11 @@ on:
   push:
     branches:
       - main
-    
+
   pull_request:
     branches:
       - main
-    
+
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -18,10 +18,10 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
  # This workflow contains a three jobs called "test_app", "build", "push_on_docker"
-  
+
   docker:
-    
-    runs-on: self-hosted
+
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
@@ -47,11 +47,11 @@ jobs:
 
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v2
-        
+
       - name: build and Push image
         uses: docker/build-push-action@v4
         with:
           push: true
           tags: ${{ steps.docker_meta.outputs.tags }}
           file: ./Dockerfile
-          
+
