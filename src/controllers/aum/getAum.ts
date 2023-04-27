@@ -12,7 +12,7 @@ const getAum: RequestHandler = async (req, res) => {
     const row = await dataWarehouse.getTotalAmountManaged()
     const value = row.length ? row[0]['usd_final_underlying_and_UR_balance'] : config.defaultAumValue
 
-    const formattedValue = numbro(value).format({thousandSeparated: true, mantissa: 0})
+    const formattedValue = numbro(value).format({ thousandSeparated: true, mantissa: 0 })
 
     res.status(200).json({ value, formattedValue })
   } catch (error) {
