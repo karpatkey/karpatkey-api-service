@@ -21,8 +21,8 @@ export class DataWarehouse {
   }
 
   async getTotalAmountManaged() {
-    const dataset = this.bigQuery.dataset('reports')
-    const [view] = await dataset.table('vw_total_amount_managed').get()
+    const dataset = this.bigQuery.dataset(config.dwDataset)
+    const [view] = await dataset.table(config.dwTable).get()
     const viewQuery = view.metadata.view.query
 
     return this.executeCommonJobQuery(viewQuery)

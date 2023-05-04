@@ -19,8 +19,18 @@ const config = {
     development: process.env.DEV_ORIGIN ?? '*',
     production: process.env.PROD_ORIGIN ?? 'none'
   },
+
+  dwTable: process.env.DW_TABLE ?? '',
+  dwDataset: process.env.DW_DATASET ?? '',
+
+  wfCollectionID: process.env.WF_COLLECTION_ID ?? '',
+  wfAPIKey: process.env.WF_API_KEY ?? '',
+
   defaultAumValue: process.env.DEFAULT_AUM_VALUE,
-  mirrorAddress: process.env.MIRROR_ADDRESS,
+
+  mirrorAddress: process.env.MIRROR_ADDRESS ?? '',
+  mirrorAddressEns: process.env.MIRROR_ADDRESS_ENS ?? '',
+
   googleProjectId: process.env.GOOGLE_PROJECT_ID,
   googleCredentials: {
     client_id: process.env.GOOGLE_CLIENT_ID,
