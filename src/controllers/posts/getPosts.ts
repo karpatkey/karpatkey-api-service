@@ -1,6 +1,6 @@
 import { RequestHandler } from 'express'
 import config from '../../config'
-import {getMirrorPosts} from "../../utils/mirror"
+import { getMirrorPosts } from '../../utils/mirror'
 
 /**
  * Get mirror blog posts
