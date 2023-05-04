@@ -35,4 +35,10 @@ jobs:
           GOOGLE_PRIVATE_KEY: ${{ secrets.GOOGLE_PRIVATE_KEY }}
           GOOGLE_PROJECT_ID: ${{ secrets.GOOGLE_PROJECT_ID }}
           DEFAULT_AUM_VALUE: ${{ secrets.DEFAULT_AUM_VALUE }}
+          DW_DATASET: ${{ secrets.DW_DATASET }}
+          DW_TABLE: ${{ secrets.DW_TABLE }}
+          MIRROR_ADDRESS: ${{ secrets.MIRROR_ADDRESS }}
+          MIRROR_ADDRESS_ENS: ${{ secrets.MIRROR_ADDRESS_ENS }}
+          WF_API_KEY: ${{ secrets.WF_API_KEY }}
+          WF_COLLECTION_ID: ${{ secrets.WF_COLLECTION_ID }}
         run: yarn test
