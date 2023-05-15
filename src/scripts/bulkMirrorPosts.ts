@@ -8,6 +8,33 @@ import { slugify } from '../utils'
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const excerptHtml = require('excerpt-html')
 
+interface Data {
+  name: string
+  slug: string
+  mirrortitle: string
+  mirrordescription: string
+  type: string
+  mirrorbody: string
+  mirrorurl: string
+  mirrorimageurl: string
+  mirrorid: string
+  mirrordigest: string
+  mirrorpublisheraddress: string
+  mirrorpublisherdisplayname: string
+  mirrorpublisherens: string
+  mirrormemberaddress: string
+  mirrormemberdisplayname: string
+  mirrormemberens: string
+  mirrorpublishedtimestamp: string
+  mirrorimage: string
+  mirrorpostcreated: string
+  mirrorcontent: string
+  mirrorcontentexcerpt: string
+  mirrorcontenttextexcerpt: string
+  mirrorposturl: string
+  mirrorpostcreators: string
+}
+
 ;(async () => {
   try {
     const collectionItems = await getCollectionItems(config.wfCollectionID, config.wfAPIKey)
@@ -20,7 +47,7 @@ const excerptHtml = require('excerpt-html')
         return
       }
 
-      const data = {
+      const data: Data = {
         name: post.title,
         slug: slugify(post.title),
         mirrortitle: post.title,
@@ -60,6 +87,18 @@ const excerptHtml = require('excerpt-html')
             ? `${post.publisher.member.displayName} | rsousamarques`
             : post.publisher.member.displayName
       }
+
+      // Apply replacements
+      const replaceString = config.replaceStrings.find((replaceString: any) => {
+        return replaceString.id === data.mirrorid
+      })
+
+      if (replaceString) {
+        replaceString.replace.forEach((replace: any) => {
+          data[replace.field as keyof Data] = data[replace.field as keyof Data].replace(replace.search, replace.replace)
+        })
+      }
+
       await postCollectionItem(config.wfCollectionID, config.wfAPIKey, data)
       console.log(`Blog post from mirror with id ${post._id} was imported!`)
     })
