@@ -4,6 +4,10 @@ import config from '../config'
 import { getCollectionItems, postCollectionItem } from '../utils/webFlow'
 import { getMirrorPosts } from '../utils/mirror'
 import { slugify } from '../utils'
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const excerptHtml = require('excerpt-html')
+
 ;(async () => {
   try {
     const collectionItems = await getCollectionItems(config.wfCollectionID, config.wfAPIKey)
@@ -37,6 +41,18 @@ import { slugify } from '../utils'
         mirrorimage: post.featuredImage.url,
         mirrorpostcreated: moment.unix(post.publishedAtTimestamp).format('DD MMM YYYY'),
         mirrorcontent: converter.makeHtml(post.body),
+        mirrorcontentexcerpt: excerptHtml(converter.makeHtml(post.body), {
+          stripTags: true,
+          pruneLength: 150,
+          pruneString: '…',
+          pruneSeparator: ' ' // Separator to be used to separate words
+        }),
+        mirrorcontenttextexcerpt: excerptHtml(converter.makeHtml(post.body), {
+          stripTags: true,
+          pruneLength: 150,
+          pruneString: '…',
+          pruneSeparator: ' ' // Separator to be used to separate words
+        }),
         mirrorposturl: `https://mirror.xyz/${config.mirrorAddressEns}/${post.digest}`,
         // The blog post only have one owner, so to fix this we did this little hack
         mirrorpostcreators:
