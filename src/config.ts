@@ -37,7 +37,29 @@ const config = {
     client_email: process.env.GOOGLE_CLIENT_EMAIL,
     project_id: process.env.GOOGLE_PROJECT_ID,
     private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(new RegExp('\\\\n', 'g'), '\n')
-  }
+  },
+  replaceStrings: [
+    {
+      id: 'rObSUa0VosP2Rb2Bllj_kygIc5mlGesmJ0CTf9LuHlA',
+      replace: [
+        {
+          field: 'mirrorcontent',
+          search: '<img src="https://images.mirror-media.xyz/publication-images/Z6ppvMk8cBucKxa7nPDOa.png?height=522&width=3200" alt="The font: IBM Plex Mono and Sans" />',
+          replace: '<img src="https://uploads-ssl.webflow.com/639c46f0e63ad8a736f14b89/64629120bf70fa5b5b1bf01e_lorem.png" height="100%" width="588px" alt="The font: IBM Plex Mono and Sans" />'
+        },
+        {
+          field: 'mirrorcontent',
+          search: '<img src="https://images.mirror-media.xyz/publication-images/nBeoBHpnJqtPncnyiJfWM.png?height=872&width=3200" alt="The colors: black and white" />',
+          replace: '<img src="https://uploads-ssl.webflow.com/639c46f0e63ad8a736f14b89/6462911fa1057dbf5f0f9bb8_circle.png" height="100%" width="588px" alt="The font: IBM Plex Mono and Sans" />'
+        },
+        {
+          field: 'mirrorcontent',
+          search: '<img src="https://images.mirror-media.xyz/publication-images/B4ywzobMAGUe8W4frX6Wu.png?height=1840&width=3200" alt="A fractal space filling curve " />',
+          replace: '<img src="https://uploads-ssl.webflow.com/639c46f0e63ad8a736f14b89/64629120fe7a246a939aa4d5_logo.png" height="100%" width="588px" alt="The font: IBM Plex Mono and Sans" />'
+        }
+      ]
+    }
+  ]
 }
 
 export default config
