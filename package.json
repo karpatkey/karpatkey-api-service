@@ -20,7 +20,7 @@
     "bulk:posts": "ts-node --project ./tsconfig.json ./src/scripts/bulkMirrorPosts.ts"
   },
   "dependencies": {
-    "@google-cloud/bigquery": "^6.2.0",
+    "@google-cloud/bigquery": "^7.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "excerpt-html": "^1.2.2",
