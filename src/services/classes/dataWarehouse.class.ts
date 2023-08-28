@@ -20,10 +20,16 @@ export class DataWarehouse {
     return DataWarehouse.instance
   }
 
-  async getTotalAmountManaged() {
+  async getTotalAmountManagedV1() {
     const dataset = this.bigQuery.dataset(config.dwDataset)
     const [view] = await dataset.table(config.dwTable).get()
     const viewQuery = view.metadata.view.query
+
+    return this.executeCommonJobQuery(viewQuery)
+  }
+
+  async getTotalAmountManagedV2() {
+    const viewQuery = 'SELECT * FROM `karpatkey-data-warehouse.reports_production.prod_vw_aum`'
 
     return this.executeCommonJobQuery(viewQuery)
   }
