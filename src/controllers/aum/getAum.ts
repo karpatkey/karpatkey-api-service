@@ -9,8 +9,8 @@ import config from '../../config'
 const getAum: RequestHandler = async (req, res) => {
   try {
     const dataWarehouse = DataWarehouse.getInstance()
-    const row = await dataWarehouse.getTotalAmountManaged()
-    const value = row.length ? row[0]['usd_final_underlying_and_UR_balance'] : config.defaultAumValue
+    const row = await dataWarehouse.getTotalAmountManagedV2()
+    const value = row.length ? row[0]['f0_'] : config.defaultAumValue
 
     const formattedValue = numbro(value).format({ thousandSeparated: true, mantissa: 0 })
 
