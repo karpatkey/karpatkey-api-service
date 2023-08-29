@@ -9,10 +9,12 @@
     "strict": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
+    "baseUrl": ".", /* Base directory to resolve non-absolute module names. */
     "typeRoots": ["./global.d.ts", "./node_modules/@types"],
   },
   "include": [
-    "src/tests/**/*.ts"
+    "src/tests/**/*.ts",
+    "./src/**/*.ts"
   ],
   "files": [
     "src/index.ts"
