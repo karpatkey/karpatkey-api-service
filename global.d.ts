@@ -12,5 +12,7 @@ declare namespace NodeJS {
         MIRROR_ADDRESS: string
         DW_DATASET: string
         DW_TABLE: string
+        WF_COLLECTION_ID: string
+        WF_API_KEY: string
     }
 }

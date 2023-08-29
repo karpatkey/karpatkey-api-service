@@ -1,5 +1,6 @@
-import * as moment from 'moment'
-import * as showdown from 'showdown'
+// import moment library
+import moment from 'moment'
+import showdown from 'showdown'
 import config from '../config'
 import { getCollectionItems, postCollectionItem } from '../utils/webFlow'
 import { getMirrorPosts } from '../utils/mirror'
