@@ -13,6 +13,7 @@ export const getCollectionItems = async (collectionId: string, apiKey: string) =
   return result
 }
 
+// eslint-disable-next-line  @typescript-eslint/no-explicit-any
 export const postCollectionItem = async (collectionId: string, apiKey: string, data: any) => {
   const url = `https://api.webflow.com/collections/${collectionId}/items?access_token=${apiKey}`
   const options = {

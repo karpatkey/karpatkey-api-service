@@ -41,7 +41,9 @@ interface Data {
     const collectionItems = await getCollectionItems(config.wfCollectionID, config.wfAPIKey)
     const blogPosts = await getMirrorPosts(config.mirrorAddress)
     const converter = new showdown.Converter()
+    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
     blogPosts?.data?.projectFeed?.posts.forEach(async (post: any) => {
+      // eslint-disable-next-line  @typescript-eslint/no-explicit-any
       const postExists = collectionItems?.items?.find((item: any) => item?.mirrorid === post?._id)
       if (postExists) {
         console.log(`Blog post from mirror with id ${post._id} already exists in Webflow!`)
@@ -90,11 +92,13 @@ interface Data {
       }
 
       // Apply replacements
+      // eslint-disable-next-line  @typescript-eslint/no-explicit-any
       const replaceString = config.replaceStrings.find((replaceString: any) => {
         return replaceString.id === data.mirrorid
       })
 
       if (replaceString) {
+        // eslint-disable-next-line  @typescript-eslint/no-explicit-any
         replaceString.replace.forEach((replace: any) => {
           data[replace.field as keyof Data] = data[replace.field as keyof Data].replace(replace.search, replace.replace)
         })
