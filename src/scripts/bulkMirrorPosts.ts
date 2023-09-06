@@ -45,7 +45,7 @@ const excerptHtml = require('excerpt-html')
             ? `${post.publisher.member.displayName} | rsousamarques`
             : post.publisher.member.displayName, // OK
         // The blog post only have one owner, so to fix this we did this little hack
-        contentcreated: moment.unix(post.publishedAtTimestamp).format('DD MMM YYYY'), // OK
+        contentcreated: moment.unix(post.publishedAtTimestamp).format('DD MMM YYYY') // OK
       }
 
       // Apply replacements
