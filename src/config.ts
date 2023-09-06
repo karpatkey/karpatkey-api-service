@@ -38,6 +38,17 @@ const config = {
     project_id: process.env.GOOGLE_PROJECT_ID,
     private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(new RegExp('\\\\n', 'g'), '\n')
   },
+
+  twitterCredentials: {
+    consumer_key: process.env.TWITTER_CONSUMER_KEY,
+    consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+    access_token_id: process.env.TWITTER_ACCESS_TOKEN_KEY,
+    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
+    bearer_token: process.env.TWITTER_BEARER_TOKEN,
+    user_id: process.env.TWITTER_USER_ID,
+    user_name: 'karpatkey'
+  },
+
   replaceStrings: [
     {
       id: 'rObSUa0VosP2Rb2Bllj_kygIc5mlGesmJ0CTf9LuHlA',
