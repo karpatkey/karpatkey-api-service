@@ -2,33 +2,27 @@ name: Build and Push to Docker Registry
 
 # Controls when the action will run.
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
+  # Triggers the workflow on push or pull request events for the main branch
   push:
     branches:
       - main
-
-  pull_request:
-    branches:
-      - main
-
+      - develop
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
- # This workflow contains a three jobs called "test_app", "build", "push_on_docker"
-
-  docker:
-
-    runs-on: ubuntu-latest
+  docker_main:
+    if: github.ref == 'refs/heads/main' # Run only for the main branch
+    runs-on: self-hosted
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Docker meta
         id: docker_meta
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@v5
         with:
           images: registry.digitalocean.com/karpatkey/karpatkey-nc-aum-api
           tags: |
@@ -36,22 +30,69 @@ jobs:
             type=sha,prefix={{branch}}
             type=raw,value={{branch}}
             type=semver,pattern={{version}},value=v1.0.0
-
-
+            
       - name: Login to Docker
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           registry: ${{ secrets.DOCKER_URL }}
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Setup Docker Buildx
-        uses: docker/setup-buildx-action@v2
-
-      - name: build and Push image
-        uses: docker/build-push-action@v4
+        uses: docker/setup-buildx-action@v3
+        
+      - name: Build and Push image
+        uses: docker/build-push-action@v5
         with:
           push: true
           tags: ${{ steps.docker_meta.outputs.tags }}
           file: ./Dockerfile
+          
+
+  # docker_develop:
+  #   if: github.ref == 'refs/heads/develop' # Run only for the develop branch
+  #   runs-on: self-hosted
+
+  #   steps:
+  #     - uses: actions/checkout@v4
+
+  #     - name: Docker meta
+  #       id: docker_meta
+  #       uses: docker/metadata-action@v5
+  #       with:
+  #         images: registry.digitalocean.com/karpatkey/karpatkey-nc-aum-api
+  #         tags: |
+  #           type=ref,event=branch
+  #           type=sha,prefix={{branch}}
+  #           type=raw,value={{branch}}
+  #           type=semver,pattern={{version}},value=v1.0.0
+
+  #     - name: Login to Docker
+  #       uses: docker/login-action@v3
+  #       with:
+  #         registry: ${{ secrets.DOCKER_URL }}
+  #         username: ${{ secrets.DOCKER_USERNAME }}
+  #         password: ${{ secrets.DOCKER_PASSWORD }}
+
+  #     - name: Setup Docker Buildx
+  #       uses: docker/setup-buildx-action@v3
+        
+  #     - name: Build and Push image
+  #       uses: docker/build-push-action@v5
+  #       with:
+  #         push: true
+  #         tags: ${{ steps.docker_meta.outputs.tags }}
+  #         file: ./Dockerfile
+          
+
+  update_main_deployment:
+    if: github.ref == 'refs/heads/main' # Run only for the main branch
+    needs: docker_main
+    runs-on: self-hosted
+    timeout-minutes: 10
+    steps:
+      - uses: tale/kubectl-action@v1
+        with:
+          base64-kube-config: ${{ secrets.KUBE_CONFIG }}
+      - run: kubectl delete pod -n karpatkey-nc-aum-api -l app=karpatkey-nc-aum-api --force
 
