@@ -40,10 +40,10 @@ const getUserTweets = async (startTime: string, endTime: string) => {
     if (resp && resp.meta && resp.meta.result_count && resp.meta.result_count > 0) {
       userName = resp.includes.users[0].username
       if (resp.data) {
-        for(const tweet of resp.data) {
+        for (const tweet of resp.data) {
           const item = {
             ...tweet,
-            media: resp?.includes?.media ?? [],
+            media: resp?.includes?.media ?? []
           }
           userTweets.push(item as any)
         }
