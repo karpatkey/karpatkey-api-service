@@ -10,22 +10,14 @@ const buildUrl = (userId: string, tweetId: string) => {
   return `https://twitter.com/${userId}/status/${tweetId}`
 }
 
-const getUserTweets = async () => {
+const getUserTweets = async (startTime: string, endTime: string) => {
   const userTweets: any[] = []
-
-  // Get start date in the format RFC3339
-  const date = new Date()
-  const endTime = date.toISOString()
-
-  // Add to the var startTime one day in the format RFC3339
-  date.setDate(date.getDate() - 1)
-  const startTime = date.toISOString()
 
   const params = {
     start_time: startTime,
     end_time: endTime,
-    max_results: 5,
-    'tweet.fields': 'id,text,entities,created_at',
+    max_results: 100,
+    'tweet.fields': 'id,text,entities,conversation_id,created_at',
     'user.fields': 'username,created_at',
     expansions: 'author_id,attachments.media_keys',
     'media.fields': 'duration_ms,height,media_key,preview_image_url,public_metrics,type,url,width'
@@ -46,11 +38,15 @@ const getUserTweets = async () => {
   while (hasNextPage) {
     const resp = await getPage(params, options, nextToken)
     if (resp && resp.meta && resp.meta.result_count && resp.meta.result_count > 0) {
-      //Console log resp to see the full response structure
-      console.log(JSON.stringify(resp, null, 4))
       userName = resp.includes.users[0].username
       if (resp.data) {
-        userTweets.push({ data: resp.data, resp } as any)
+        for(const tweet of resp.data) {
+          const item = {
+            ...tweet,
+            media: resp?.includes?.media ?? [],
+          }
+          userTweets.push(item as any)
+        }
       }
       if (resp.meta.next_token) {
         nextToken = resp.meta.next_token
