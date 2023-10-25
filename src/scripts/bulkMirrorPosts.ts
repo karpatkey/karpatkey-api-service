@@ -42,9 +42,9 @@ const excerptHtml = require('excerpt-html')
           }), // OK
           mirrorposturl: `https://mirror.xyz/${config.mirrorAddressEns}/${post.digest}`, //OK
           mirrorpostcreators:
-              'leafilipo.eth' === post.publisher.member.ens
-                  ? `${post.publisher.member.displayName} | rsousamarques`
-                  : post.publisher.member.displayName, // OK
+            'leafilipo.eth' === post.publisher.member.ens
+              ? `${post.publisher.member.displayName} | rsousamarques`
+              : post.publisher.member.displayName, // OK
           // The blog post only have one owner, so to fix this we did this little hack
           contentcreated: moment.unix(post.publishedAtTimestamp).format('DD MMM YYYY') // OK
         }
@@ -58,11 +58,14 @@ const excerptHtml = require('excerpt-html')
         if (replaceString) {
           // eslint-disable-next-line  @typescript-eslint/no-explicit-any
           replaceString.replace.forEach((replace: any) => {
-            data[replace.field as keyof typeof data] = data[replace.field as keyof typeof data].replace(replace.search, replace.replace)
+            data[replace.field as keyof typeof data] = data[replace.field as keyof typeof data].replace(
+              replace.search,
+              replace.replace
+            )
           })
         }
 
-       // console.log('data', data)
+        // console.log('data', data)
         await postCollectionItem(config.wfCollectionID, config.wfAPIKey, data)
         console.log(`Blog post from mirror with id ${post._id} was imported!`)
       }
