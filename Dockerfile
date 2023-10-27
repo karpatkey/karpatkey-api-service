@@ -1,4 +1,4 @@
-FROM node:lts-alpine as ts-environment
+FROM node:20.0.0-alpine as ts-environment
 WORKDIR /usr/app
 
 COPY package.json ./
