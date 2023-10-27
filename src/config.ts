@@ -26,7 +26,8 @@ const config = {
   wfCollectionID: process.env.WF_COLLECTION_ID ?? '',
   wfAPIKey: process.env.WF_API_KEY ?? '',
 
-  defaultAumValue: process.env.DEFAULT_AUM_VALUE,
+  defaultAumValue: process.env.DEFAULT_AUM_VALUE || 281266105.21651304,
+  defaultTreasuryIndicatorValue: process.env.DEFAULT_TREASURY_INDICATOR_VALUE || 511287614.6677685,
 
   mirrorAddress: process.env.MIRROR_ADDRESS ?? '',
   mirrorAddressEns: process.env.MIRROR_ADDRESS_ENS ?? '',
