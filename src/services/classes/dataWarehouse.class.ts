@@ -34,6 +34,12 @@ export class DataWarehouse {
     return this.executeCommonJobQuery(viewQuery)
   }
 
+  async getTotalAmountManagedV3() {
+    const viewQuery = 'SELECT * FROM `karpatkey-data-warehouse.reports_production.vw_prod_our_dao_tr`'
+
+    return this.executeCommonJobQuery(viewQuery)
+  }
+
   async executeCommonJobQuery(viewQuery: string) {
     const options = {
       query: viewQuery,
