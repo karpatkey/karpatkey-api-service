@@ -888,10 +888,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/needle@^3.2.0":
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/@types/needle/-/needle-3.2.2.tgz#807608bd177f4b11019b82b5258519200856a99d"
-  integrity sha512-xUKAjFjDcucpgfyTvnbaqN+WBKyM9UehBuVRI/1AoPbaXrCScADqeTgTM1ZBYnS3Ovs9IEQt813IcJNyac7dNQ==
+"@types/needle@^3.2.3":
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/@types/needle/-/needle-3.2.3.tgz#9d850da6f0f3fb713c2ea184fecd357a025bacbf"
+  integrity sha512-aUtoZUGROl654rDZlZYPRYaysAOBaVgjnbmYKq3n32afuqFvEts31YGixTebSOCJt7B7qKnHzCzcjbMig5LcQg==
   dependencies:
     "@types/node" "*"
 
