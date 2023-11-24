@@ -969,10 +969,10 @@
   dependencies:
     "@types/superagent" "*"
 
-"@types/twitter-text@^3.1.8":
-  version "3.1.8"
-  resolved "https://registry.yarnpkg.com/@types/twitter-text/-/twitter-text-3.1.8.tgz#0ed6d04a35bde27c40cac5899ef9ed546b4e95b2"
-  integrity sha512-8Ma0EwEz/38i8nePpvyg120ALGPBz06A+Q1P4nyDelQNVMpuyy/dwuSwVXQE5H+22S6oQXkuFkyPoki6QN6pHQ==
+"@types/twitter-text@^3.1.9":
+  version "3.1.9"
+  resolved "https://registry.yarnpkg.com/@types/twitter-text/-/twitter-text-3.1.9.tgz#2c06edeb83963004c4ccb712fcad16b0141c2a92"
+  integrity sha512-hn8Tfob9TX3aqC6YUZCbzygMBF3WI4llZvn0AdQ0MF6csQn1QNcQ0d8kunm0VErUGbv6CNlBrt0KGxKHeAGDQQ==
 
 "@types/yargs-parser@*":
   version "21.0.2"
