@@ -1,5 +1,5 @@
 import config from '../config'
-import {getCollectionItems, postCollectionItem, publishCollectionItem} from '../utils/webFlow'
+import {getCollectionItems, postCollectionItem} from '../utils/webFlow'
 import { buildUrl, getUserTweets } from '../utils/twitter'
 import moment from 'moment'
 import showdown from 'showdown'
