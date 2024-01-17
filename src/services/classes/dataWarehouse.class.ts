@@ -40,6 +40,13 @@ export class DataWarehouse {
     return this.executeCommonJobQuery(viewQuery)
   }
 
+  async getTokenDetails() {
+    const viewQuery = 'select * from `karpatkey-data-warehouse.reports_production.vw_our_daos_detail_token`'
+
+    return this.executeCommonJobQuery(viewQuery)
+
+  }
+
   async executeCommonJobQuery(viewQuery: string) {
     const options = {
       query: viewQuery,
