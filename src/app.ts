@@ -30,7 +30,7 @@ app.use('/', status)
 app.use('/aum', aum)
 app.use('/treasury_indicator', treasuryIndicator)
 app.use('/posts', posts)
-app.use('/tokens', tokens)
+app.use('/our_daos_token_details', tokens)
 
 // Not found handler
 app.use('*', notFoundHandler)
