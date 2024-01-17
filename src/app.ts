@@ -9,6 +9,7 @@ import aum from './routes/aum'
 import treasuryIndicator from './routes/treasury_indicator'
 import status from './routes/status'
 import posts from './routes/posts'
+import tokens from './routes/tokens'
 
 const app = express()
 
@@ -29,6 +30,7 @@ app.use('/', status)
 app.use('/aum', aum)
 app.use('/treasury_indicator', treasuryIndicator)
 app.use('/posts', posts)
+app.use('/our_daos_token_details', tokens)
 
 // Not found handler
 app.use('*', notFoundHandler)
