@@ -969,10 +969,10 @@
     "@types/methods" "^1.1.4"
     "@types/superagent" "^8.1.0"
 
-"@types/twitter-text@^3.1.9":
-  version "3.1.9"
-  resolved "https://registry.yarnpkg.com/@types/twitter-text/-/twitter-text-3.1.9.tgz#2c06edeb83963004c4ccb712fcad16b0141c2a92"
-  integrity sha512-hn8Tfob9TX3aqC6YUZCbzygMBF3WI4llZvn0AdQ0MF6csQn1QNcQ0d8kunm0VErUGbv6CNlBrt0KGxKHeAGDQQ==
+"@types/twitter-text@^3.1.10":
+  version "3.1.10"
+  resolved "https://registry.yarnpkg.com/@types/twitter-text/-/twitter-text-3.1.10.tgz#61ee8e2761c6f84c1e84fbce44b663e1b479cc7c"
+  integrity sha512-+wF6TYQtvokyCc42VKF9OAvEgro0JIAEMor+A7eZsZtkgD/LPAIJx5+g7529nQUzRpas2hlmJEPfZgkzxr0xnA==
 
 "@types/yargs-parser@*":
   version "21.0.2"
