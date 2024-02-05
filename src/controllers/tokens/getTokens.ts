@@ -1,6 +1,6 @@
 import { RequestHandler } from 'express'
 import mCache from 'memory-cache'
-import {DataWarehouse} from "../../services/classes/dataWarehouse.class";
+import { DataWarehouse } from '../../services/classes/dataWarehouse.class'
 
 /**
  * Get tokens
@@ -10,7 +10,7 @@ const getTokens: RequestHandler = async (req, res) => {
     // get tokens from cache
     const tokens = mCache.get('tokens')
 
-    if(!tokens) {
+    if (!tokens) {
       const dataWarehouse = DataWarehouse.getInstance()
       const tokens = await dataWarehouse.getTokenDetails()
       // let's use 1 hour and half as cache time
