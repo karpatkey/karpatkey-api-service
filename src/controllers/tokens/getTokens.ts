@@ -1,15 +1,24 @@
 import { RequestHandler } from 'express'
-import { DataWarehouse } from '../../services/classes/dataWarehouse.class'
+import mCache from 'memory-cache'
+import {DataWarehouse} from "../../services/classes/dataWarehouse.class";
 
 /**
  * Get tokens
  */
 const getTokens: RequestHandler = async (req, res) => {
   try {
-    const dataWarehouse = DataWarehouse.getInstance()
-    const tokens = await dataWarehouse.getTokenDetails()
+    // get tokens from cache
+    const tokens = mCache.get('tokens')
 
-    res.status(200).json({ tokens })
+    if(!tokens) {
+      const dataWarehouse = DataWarehouse.getInstance()
+      const tokens = await dataWarehouse.getTokenDetails()
+      // let's use 1 hour and half as cache time
+      mCache.put('tokens', tokens, 5400000)
+      res.status(200).json({ tokens })
+    } else {
+      res.status(200).json({ tokens })
+    }
   } catch (error) {
     console.error('Error getting tokens', error)
     res.status(500).json({
