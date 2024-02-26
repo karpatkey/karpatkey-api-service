@@ -10,7 +10,7 @@ import twitterText from 'twitter-text'
     const date = new Date()
 
     const endTime = date.toISOString()
-    const startTime = moment(endTime).subtract(1, 'day').toISOString()
+    const startTime = moment(endTime).subtract(10, 'day').toISOString()
 
     const tweets = (await getUserTweets(startTime, endTime)).sort((a: any, b: any) => {
       const aTime = moment(a?.created_at).unix()

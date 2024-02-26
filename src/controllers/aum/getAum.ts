@@ -10,7 +10,7 @@ const getAum: RequestHandler = async (req, res) => {
   try {
     const dataWarehouse = DataWarehouse.getInstance()
     const row = await dataWarehouse.getTotalAmountManagedV2()
-    const value = row.length ? row[0]['f0_'] : config.defaultAumValue
+    const value = row.length ? row[0]['f0_'] || 0 : config.defaultAumValue
 
     const formattedValue = numbro(value).format({ thousandSeparated: true, mantissa: 0 })
 
