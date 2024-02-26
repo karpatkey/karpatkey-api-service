@@ -4,13 +4,14 @@ import { buildUrl, getUserTweets } from '../utils/twitter'
 import moment from 'moment'
 import showdown from 'showdown'
 import twitterText from 'twitter-text'
+
 ;(async () => {
   try {
     // Create two datetime in ISOString from today to 1 day ago
     const date = new Date()
 
     const endTime = date.toISOString()
-    const startTime = moment(endTime).subtract(1, 'day').toISOString()
+    const startTime = moment(endTime).subtract(10, 'day').toISOString()
 
     const tweets = (await getUserTweets(startTime, endTime)).sort((a: any, b: any) => {
       const aTime = moment(a?.created_at).unix()
