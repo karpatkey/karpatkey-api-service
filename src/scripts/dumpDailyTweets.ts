@@ -4,7 +4,6 @@ import { buildUrl, getUserTweets } from '../utils/twitter'
 import moment from 'moment'
 import showdown from 'showdown'
 import twitterText from 'twitter-text'
-
 ;(async () => {
   try {
     // Create two datetime in ISOString from today to 1 day ago
