@@ -67,7 +67,7 @@ import * as path from 'path'
     const tweetsToDump: any[] = []
 
     for (const tweet of tweets) {
-      const tweetExists = collectionItems?.items?.find(
+      const tweetExists = collectionItems?.find(
         (item: any) => item?.twitterid === tweet?.id || item?.twitterid === tweet?.conversation_id
       )
       if (tweetExists) {
