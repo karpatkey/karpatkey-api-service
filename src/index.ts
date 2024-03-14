@@ -25,6 +25,15 @@ cron.schedule('0 0 * * *', async () => {
   console.log('Twitter daily dump was executed successfully')
 })
 
+// schedule a cronjob to execute bulkMirrorPosts in a daily way
+cron.schedule('0 1 * * *', async () => {
+  console.log('---------------------')
+  console.log('running a task every 1 day')
+  register({ transpileOnly: true })
+  await import('./scripts/bulkMirrorPosts')
+  console.log('Mirror daily dump was executed successfully')
+})
+
 app.listen(config.port, () => {
   console.log(`🚀 ${config.name} ${config.version} 🚀`)
   console.log(`🚀 Listening on ${config.port} with NODE_ENV=${config.nodeEnv} 🚀`)

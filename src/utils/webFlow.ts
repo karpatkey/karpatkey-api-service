@@ -10,7 +10,19 @@ export const getCollectionItems = async (collectionId: string, apiKey: string) =
   }
 
   const result = await (await fetch(url, options)).json()
-  return result
+
+  const items = result.items
+  if (result.total > 100) {
+    // result.count, result.offset, result.limit, result.total
+    // fetch the rest of the items
+    const remainingItems = []
+    for (let i = 100; i < result.total; i += 100) {
+      const remainingResult = await (await fetch(`${url}?offset=${i}`, options)).json()
+      remainingItems.push(...remainingResult.items)
+    }
+    items.push(...remainingItems)
+  }
+  return items
 }
 
 // eslint-disable-next-line  @typescript-eslint/no-explicit-any

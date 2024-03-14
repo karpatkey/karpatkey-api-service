@@ -12,19 +12,21 @@ const excerptHtml = require('excerpt-html')
 ;(async () => {
   try {
     const collectionItems = await getCollectionItems(config.wfCollectionID, config.wfAPIKey)
+    const mirrorItems = collectionItems.filter((item: any) => item.type === 'Article')
     const blogPosts = await getMirrorPosts(config.mirrorAddress)
     const converter = new showdown.Converter()
+
     // eslint-disable-next-line  @typescript-eslint/no-explicit-any
     blogPosts?.data?.projectFeed?.posts.forEach(async (post: any) => {
       // eslint-disable-next-line  @typescript-eslint/no-explicit-any
-      const postExists = collectionItems?.items?.filter((item: any) => {
-        return item?.mirrorid !== undefined && item?.mirrorid === post?._id
+      const postExists = mirrorItems?.find((item: any) => {
+        return item?.mirrorid?.toLowerCase() === post?._id?.toLowerCase()
       })
       if (postExists) {
-        console.log(`Blog post from mirror with id ${post._id} already exists in Webflow!`)
+        console.log(`Blog post from mirror with id ${post._id} ${post.title} already exists in Webflow!`)
         return
       } else {
-        const data = {
+        const data: any = {
           name: post.title,
           slug: slugify(post.title),
           mirrortitle: post.title, // OK
@@ -46,7 +48,7 @@ const excerptHtml = require('excerpt-html')
               ? `${post.publisher.member.displayName} | rsousamarques`
               : post.publisher.member.displayName, // OK
           // The blog post only have one owner, so to fix this we did this little hack
-          contentcreated: moment.unix(post.publishedAtTimestamp).format('DD MMM YYYY') // OK
+          contentcreated: moment.unix(post.publishedAtTimestamp).unix()
         }
 
         // Apply replacements
@@ -65,7 +67,6 @@ const excerptHtml = require('excerpt-html')
           })
         }
 
-        // console.log('data', data)
         await postCollectionItem(config.wfCollectionID, config.wfAPIKey, data)
         console.log(`Blog post from mirror with id ${post._id} was imported!`)
       }
